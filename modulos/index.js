@@ -1,2 +1,2 @@
-const yuri = require('./yuri')
-yuri.classYuri.teste()
+const Yuri = require('./yuri')
+new Yuri('duyuri').teste()

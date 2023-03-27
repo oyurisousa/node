@@ -1,11 +1,16 @@
 class Yuri{
-    constructor(){
-        console.log('funciona!')
+    constructor(nome){
+        this.nome = nome
+        
+        console.log(this.nome)
+        
     }
     teste(){
         console.log('invocando teste');
     }
 }
 
-var classYuri = Yuri
-exports.classYuri = classYuri
+
+//var yuri  = new Yuri
+//exports.classYuri = yuri //forma de exportar classe indiretamente
+module.exports = Yuri // forma de exportar classe diretamente
