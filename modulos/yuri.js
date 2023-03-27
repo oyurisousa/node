@@ -1,7 +1,11 @@
-function helloYuri(){
-    console.log("olá yuri")
+class Yuri{
+    constructor(){
+        console.log('funciona!')
+    }
+    teste(){
+        console.log('invocando teste');
+    }
 }
 
-n = 10
-exports.helloYuri = helloYuri
-exports.numero = n
+var classYuri = Yuri
+exports.classYuri = classYuri
