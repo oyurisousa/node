@@ -1,0 +1,67 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+body{
+    background-color: rgb(22, 22, 22);
+}
+
+header{
+    display: flex;
+    align-items: center;
+    max-width: 768px;
+    width: 100%;
+    height: 50px;
+    margin: 0 auto;
+    background-color: #125a44;
+
+}
+form{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0px 2%;
+}
+input[type=text]{
+    width: 70%;
+    height: 30px;
+    outline: none;
+    border: none;
+    padding-left: 10px;
+    border-radius: 20px;
+    color: #220315;
+    font-size: 18px;
+}
+input[type=submit]{
+    width: 20%;
+    height: 30px;
+    border-radius: 20px;
+    background-color: #fea304 ;
+    color: #220315;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    transition: 0.5s;
+}
+input[type=submit]:hover{
+    background-color:#cd8a18;
+}
+div.tarefas{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 5px;
+    padding: 20px 2%;
+    max-width: 768px;
+    margin: 0 auto;
+    background-color: #909320 ;
+}
+
+.tarefas p{
+    font-weight: 300;
+}
