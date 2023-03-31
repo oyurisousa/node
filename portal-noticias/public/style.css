@@ -1,0 +1,60 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'lato',sans-serif;
+}
+
+header{
+    
+    padding: 8px 0;
+    background-color: #0AACDC;
+}
+
+.center{
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h2{
+    color: white;
+    font-weight: lighter;
+}
+.form-busca{
+    display: flex;
+    
+    align-items: center;
+    
+}
+
+.form-busca form{
+    color: aliceblue;
+    display: inline-block;
+    
+   
+}
+.form-busca i{
+    position: relative;
+    left: 24px;
+    font-size: 18px;
+
+}
+.form-busca input{
+    background-color: #008bb4;
+    padding-left: 24px;
+    border: none;
+    height: 40px;
+    border-radius: 10px;
+    outline: none;
+    color: white;
+    font-size: 18px;
+}
+
+::placeholder{
+    color: rgb(219, 229, 229);
+    font-size: 18px;
+}
