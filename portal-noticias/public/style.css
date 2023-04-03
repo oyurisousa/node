@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'lato',sans-serif;
+    font-family: 'montserrat';
 }
 
 
@@ -74,9 +74,6 @@ div.noticia-destaque{
     width: 100%;
     height: 500px;
     margin: 40px auto;
-   
-    
-    
     background-image: url('./images/lago.png');
     background-repeat: no-repeat;
     background-size: cover;
@@ -89,7 +86,7 @@ div.noticia-destaque{
     width: 100%;
     height: 100%;
     align-items: flex-end;
-    background-color: rgba(72, 83, 87, 0.6);
+    background-color: rgba(72, 83, 87, 0.4);
     z-index: 1;
     border-radius: 20px;
 }
@@ -102,17 +99,91 @@ section .titulo-conteudo{
     z-index: 2;
     
     
-    
 }
 
 .titulo-conteudo h2{
     font-size: 68px;
     font-weight: bold;
     color: white;
+    letter-spacing: 0px;
 }
 
 .titulo-conteudo p{
     font-size: 19px;
     font-weight: lighter;
     color: white;
+}
+
+section.outras-noticias{
+    background-color: #EAEAEA;
+    padding: 30px 2%;
+    text-align: center;
+    border: 1px solid red;
+}
+
+.outras-noticias .center{
+    display: flex;
+    border: 1px solid red;
+
+}
+section.title-outras-noticias h2{
+    font-size: 54px;
+    margin-bottom: 20px;
+}
+
+.ultimas{
+    display: flex;
+    gap: 10px;
+    width: 70%;
+    padding: 30px 0;
+}
+.mais-lidas{
+    width: 30%;
+}
+
+.mais-lidas h3{
+    height: 40px;
+    background-color: #3f51b5;
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.box-ultima-single{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: flex-start;
+    width: 48%;
+    border-radius: 10px;
+    background-color: white;
+    padding-bottom: 20px;
+}
+
+.box-ultima-single img{
+    width: 100%;
+}
+
+.box-ultima-single h3{
+    color: #33439B;
+    font-size: 19px ;
+    font-weight: bold;
+    margin-left: 30px;
+}
+.box-ultima-single h2{
+    font-size: 32px;
+    font-weight: bold;
+    text-align: left;
+    margin-left: 30px;
+    letter-spacing: 0px;
+}
+
+.box-ultima-single p{
+    font-size: 20px;
+    color: #7B8591;
+    text-align: left;
+    margin-left: 30px;
 }
