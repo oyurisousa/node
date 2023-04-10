@@ -18,13 +18,17 @@ app.get('/',(req,res)=>{
     if(req.query.busca == null){
         res.render('home',{})
     }else{
-        res.send('voce buscou'+req.query.busca)
+
+        res.render('busca',{niu:req.query.busca})
+
     }
     
 })
 
 app.get('/:slug',(req,res)=>{
-    res.send(req.params.slug)
+    //res.send(req.params.slug)
+    res.render('single',{})
+
 })
 app.listen(5000,()=>{
     console.log('rodando')
