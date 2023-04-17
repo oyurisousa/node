@@ -1,7 +1,18 @@
 const express = require('express')
+const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const path = require('path')
 const app = express()
+
+const Posts = require('./Posts') 
+const { query } = require('express')
+
+mongoose.connect('mongodb+srv://root:iruysousa@cluster0.dceitcl.mongodb.net/ipsumNews?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology:true}).then(()=>{
+    console.log("conectado com sucesso!")
+}).catch((err)=>{
+    console.log(err.message)
+})
+
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
@@ -16,20 +27,52 @@ app.set('views',path.join(__dirname,'/pages'))
 app.get('/',(req,res)=>{
     
     if(req.query.busca == null){
-        res.render('home',{})
+        Posts.find({}).sort({'_id':-1}).then(function(posts){
+            posts = posts.map((val)=>{
+                return {
+                    titulo: val.titulo,
+                    conteudo : val.conteudo,
+                    descricaoCurta : val.conteudo.substr(0,100),
+                    imagem : val.imagem,
+                    slug : val.slug,
+                    categoria : val.categoria,
+                    author : val.autor,
+                    views : val.views
+                    
+                }
+            })
+            res.render('home',{posts:posts})
+            console.log(posts)
+        }).catch(function(err){
+            console.log(err)
+        })
+               
+        
+        
+        /*Posts.find({}).sort({'_id':-1}).exec(function(err,posts){
+            console.log(posts[0])
+        })*/
+        
     }else{
-
-        res.render('busca',{niu:req.query.busca})
+        
+        res.render('busca',{niu:query.busca})
 
     }
     
 })
 
-app.get('/:slug',(req,res)=>{
-    //res.send(req.params.slug)
-    res.render('single',{})
+app.get('/:slug', async (req, res) => {
+    try {
+      const resposta = await Posts.findOneAndUpdate({slug: req.params.slug},{$inc: {views: 1}},{new: true});
+      console.log(resposta);
+      res.render('single', {});
+    } catch (err) {
+      console.log(err);
+      res.status(500).send('Erro interno do servidor');
+    }
+  });
+  
 
-})
 app.listen(5000,()=>{
     console.log('rodando')
 })
