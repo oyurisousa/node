@@ -2,7 +2,18 @@
 <%- include('partials/header.html')%>
 
     <h1><b>BUSCA:</b></h1>
-    <p><%=niu%></p>
+    
+    <div class="ultima" >
+        <% for(let x = 0;x<posts.length;x++){%>
+            <div class="box-ultima-single" style="max-width: 300px;">
+                <img src="<%= posts[x].imagem %>" >
+                <h3><%= posts[x].categoria %></h3>
+                <h2><%= posts[x].titulo %></h2>
+                <p><%- posts[x].descricaoCurta%></p>
+                <a href="<%= posts[x].slug %>">Saiba mais</a>
+            </div>
+        <%}%>
+    </div>
 
 <%- include('partials/footer.html')%>
 

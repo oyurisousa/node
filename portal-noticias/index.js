@@ -41,8 +41,25 @@ app.get('/',(req,res)=>{
                     
                 }
             })
-            res.render('home',{posts:posts})
-            console.log(posts)
+        
+        Posts.find({}).sort({'views':-1}).limit(3).then(function(postsTop){
+            postsTop = postsTop.map((val)=>{
+                return {
+                    titulo: val.titulo,
+                    conteudo : val.conteudo,
+                    descricaoCurta : val.conteudo.substr(0,100),
+                    imagem : val.imagem,
+                    slug : val.slug,
+                    categoria : val.categoria,
+                    author : val.autor,
+                    views : val.views
+                    
+                }
+            }
+        )
+        res.render('home',{posts:posts, postsTop:postsTop})
+        console.log(posts)
+        })
         }).catch(function(err){
             console.log(err)
         })
@@ -54,8 +71,11 @@ app.get('/',(req,res)=>{
         })*/
         
     }else{
+        Posts.find({titulo: {$regex: req.query.busca, $options: "i"}}).then(function(posts){
+            console.log(posts)
+            res.render('busca',{posts:posts})
+        })
         
-        res.render('busca',{niu:query.busca})
 
     }
     
@@ -65,7 +85,27 @@ app.get('/:slug', async (req, res) => {
     try {
       const resposta = await Posts.findOneAndUpdate({slug: req.params.slug},{$inc: {views: 1}},{new: true});
       console.log(resposta);
-      res.render('single', {});
+        if(resposta != null){
+            Posts.find({}).sort({'views':-1}).limit(3).then(function(postsTop){
+                postsTop = postsTop.map((val)=>{
+                    return {
+                        titulo: val.titulo,
+                        conteudo : val.conteudo,
+                        descricaoCurta : val.conteudo.substr(0,100),
+                        imagem : val.imagem,
+                        slug : val.slug,
+                        categoria : val.categoria,
+                        author : val.autor,
+                        views : val.views
+                    
+                    }
+                })
+            res.render('single', {noticia:resposta, postsTop:postsTop});
+            })
+        }else{
+            res.render('erro',{})
+        }
+      
     } catch (err) {
       console.log(err);
       res.status(500).send('Erro interno do servidor');
