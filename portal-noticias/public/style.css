@@ -6,14 +6,9 @@
 }
 
 
+
 a{
     text-decoration: none;
-}
-
-header{
-    
-    padding: 8px 0;
-    background-color: #0AACDC;
 }
 
 .center{
@@ -26,17 +21,36 @@ header{
     align-items: center;
     flex-wrap: wrap;
 }
+:root {
+    --cor-central: #0AACDC;
+    --color-secundaria: #008bb4;
+    --text-color: white;
 
+}
 
+header{
+    width: 100%;
+    padding: 8px 0;
+    background-color: var(--cor-central);
+}
+
+.header-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+}
 .logo h2{
-    color: white;
+    color: var(--text-color);
     font-weight: lighter;
 }
+
 .form-busca{
-    display: flex;
-    
+    display: flex;    
     align-items: center;
-    
+
 }
 
 .form-busca form{
@@ -47,13 +61,13 @@ header{
 }
 .form-busca i{
     position: relative;
-    left: 24px;
+    left: 27px;
     font-size: 18px;
 
 }
 .form-busca input{
-    background-color: #008bb4;
-    padding-left: 24px;
+    background-color: var(--color-secundaria);
+    padding-left: 27px;
     border: none;
     height: 40px;
     border-radius: 10px;
@@ -67,6 +81,12 @@ header{
     font-size: 18px;
 }
 
+::-moz-selection{
+    background-color: var(--color-secundaria);
+}
+::selection{
+    background-color: var(--color-secundaria);
+}
 /*section noticia-destaque*/
 section.sessao1{
     padding: 0 2%;
