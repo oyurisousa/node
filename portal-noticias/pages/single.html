@@ -1,34 +1,34 @@
 
     <%- include('partials/header.html')%>
-
+    <link rel="stylesheet" href="../public/styles/single.css">
     <section class="noticia">
-        <div class="center">
-            <div class="noticia-single">
-                <h2><%= noticia.titulo%></h2>
-                <div class="autor-nome">
-                    <span>Por <%= noticia.author%></span>
-                </div>
-                <img src="<%= noticia.imagem%>" alt="">
-                <%- noticia.conteudo%>
+        
+        <div class="noticia-single">
+            <h2><%= noticia.titulo%></h2>
+            <div class="autor-nome">
+                <img src="https://media.licdn.com/dms/image/D4D03AQG0OxJw-TPEYg/profile-displayphoto-shrink_200_200/0/1665185261567?e=1687996800&v=beta&t=QMYXVB2r2KEQK4txIDwkExuVjAgrj_kJjRq2fDkdePI" alt="">
+                <span>POR <%=noticia.author%></span>
             </div>
-            
-            <div class="mais-lidas">
-                <h3>As Mais Lidas</h3>
-                <div class="mais-lidas-noticias">
-                    <% for(let x = 0;x<postsTop.length;x++){%>
-                    <div class="mais-lidas-noticias-single">
-                        <img src="<%= postsTop[x].imagem%>" >
-                        <div class="mais-lidas-noticias-single-content">
-                            <h3><%= postsTop[x].categoria%></h3>
-                            <p><%- postsTop[x].descricaoCurta%></p>
-                        </div>
+            <img src="<%= noticia.imagem%>" alt="">
+            <%- noticia.conteudo%>
+        </div>
+        
+        <div class="mais-lidas">
+            <h3>As Mais Lidas</h3>
+            <div class="mais-lidas-noticias">
+                <% for(let x = 0;x<postsTop.length;x++){%>
+                <div class="mais-lidas-noticias-single">
+                    <img src="<%= postsTop[x].imagem%>" >
+                    <div class="mais-lidas-noticias-single-content">
+                        <h3><%= postsTop[x].categoria%></h3>
+                        <p><%- postsTop[x].descricaoCurta%></p>
                     </div>
-                    <%}%>
-                    
                 </div>
+                <%}%>
+                
             </div>
         </div>
-    </section>
+         </section>
 
     <%- include('partials/footer.html')%>
 </body>

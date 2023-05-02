@@ -1,13 +1,21 @@
 <%- include('partials/header.html')%>
         <section class="sessao1">
-            <div class="banner noticia-destaque" style="background-image: url('<%= postsTop[0].imagem %>')">
-                <div class="center">
-                    <div class="titulo-conteudo">
-                        <a href="<%= postsTop[0].slug %>"><h2><%=postsTop[0].titulo%></h2></a>
-                        <p><%-postsTop[0].descricaoCurta%>...</p>
+            <div class="noticia-destaque" style="background-image: url('<%= posts[0].imagem %>')">
+                <div class="titulo-conteudo">
+                    <div class="header-banner">
+                        <div class="banner-autor">
+                            <img src="https://media.licdn.com/dms/image/D4D03AQG0OxJw-TPEYg/profile-displayphoto-shrink_200_200/0/1665185261567?e=1687996800&v=beta&t=QMYXVB2r2KEQK4txIDwkExuVjAgrj_kJjRq2fDkdePI" alt="">
+                            <span>POR <%=posts[0].author%></span>
+                        </div>
+                        <i  id="icon-heart" class=" fa-regular fa-heart"></i>
                     </div>
-                </div>
-            </div>
+                    <div class="banner-content">
+                        <a href="<%= postsTop[0].slug %>"><h2><%=posts[0].tituloCurto%>..</h2></a>
+                        <p><%-posts[0].descricaoCurta%>...</p>
+                    </div>
+                    
+                </div><!--titulo-conteudo--
+            </div><!--noticia-destaque-->
             
         </section>
         <section class="outras-noticias">
@@ -46,7 +54,10 @@
         </section>
 
         <%- include('partials/footer.html')%>
+        
     </body>
+    <script src="../public/event/home.js"></script>
     <script src="https://kit.fontawesome.com/dc6a255beb.js" crossorigin="anonymous"></script>
+    
 </html>
 

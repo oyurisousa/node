@@ -31,12 +31,13 @@ app.get('/',(req,res)=>{
             posts = posts.map((val)=>{
                 return {
                     titulo: val.titulo,
+                    tituloCurto: val.titulo.substr(0,30),
                     conteudo : val.conteudo,
                     descricaoCurta : val.conteudo.substr(0,100),
                     imagem : val.imagem,
                     slug : val.slug,
                     categoria : val.categoria,
-                    author : val.autor,
+                    author : val.author.toUpperCase(),
                     views : val.views
                     
                 }
@@ -46,17 +47,18 @@ app.get('/',(req,res)=>{
             postsTop = postsTop.map((val)=>{
                 return {
                     titulo: val.titulo,
+                    tituloCurto: val.titulo.substr(0,50),
                     conteudo : val.conteudo,
                     descricaoCurta : val.conteudo.substr(0,100),
                     imagem : val.imagem,
                     slug : val.slug,
                     categoria : val.categoria,
-                    author : val.autor,
+                    author : val.author,
                     views : val.views
                     
                 }
             }
-        )
+            )
         res.render('home',{posts:posts, postsTop:postsTop})
         console.log(posts)
         })
@@ -100,7 +102,25 @@ app.get('/:slug', async (req, res) => {
                     
                     }
                 })
-            res.render('single', {noticia:resposta, postsTop:postsTop});
+                Posts.find({}).sort({'_id':-1}).then(function(posts){
+                    posts = posts.map((val)=>{
+                        return {
+                            titulo: val.titulo,
+                            tituloCurto: val.titulo.substr(0,30),
+                            conteudo : val.conteudo,
+                            descricaoCurta : val.conteudo.substr(0,100),
+                            imagem : val.imagem,
+                            slug : val.slug,
+                            categoria : val.categoria,
+                            author : val.author.toUpperCase(),
+                            views : val.views
+                            
+                        }
+                    })
+                
+            
+            res.render('single', {noticia:resposta, postsTop:postsTop, posts:posts});
+        })
             })
         }else{
             res.render('erro',{})
