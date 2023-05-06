@@ -60,7 +60,6 @@ app.get('/',(req,res)=>{
             }
             )
         res.render('home',{posts:posts, postsTop:postsTop})
-        console.log(posts)
         })
         }).catch(function(err){
             console.log(err)
@@ -74,7 +73,7 @@ app.get('/',(req,res)=>{
         
     }else{
         Posts.find({titulo: {$regex: req.query.busca, $options: "i"}}).then(function(posts){
-            console.log(posts)
+
             res.render('busca',{posts:posts})
         })
         
@@ -86,8 +85,8 @@ app.get('/',(req,res)=>{
 app.get('/:slug', async (req, res) => {
     try {
       const resposta = await Posts.findOneAndUpdate({slug: req.params.slug},{$inc: {views: 1}},{new: true});
-      console.log(resposta);
-        if(resposta != null){
+
+      if(resposta != null){
             Posts.find({}).sort({'views':-1}).limit(3).then(function(postsTop){
                 postsTop = postsTop.map((val)=>{
                     return {
