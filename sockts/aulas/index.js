@@ -7,13 +7,11 @@ app.get('/',(req,res)=>{
 })
 
 io.on('connection', (socket) => {
-    
-    socket.broadcast.emit('novo usuario','um novo usuario')
 
-    socket.on('disconnect', () => {
-      console.log('desconectado');
-    });
-  });
+  socket.on('chat message',(obj)=>{
+    console.log(obj)
+  })
+})
 
 http.listen(5000,()=>{
     console.log('funcionnado')

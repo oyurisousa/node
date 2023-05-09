@@ -22,15 +22,21 @@
     </form>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        var socket = io()
-        socket.on('conectado',(msg)=>{
-            console.log(msg)
-        })
+        var socket = io();
+        var nome  = prompt("qual o seu nome")
+        alert("bem vindo "+nome)
 
-        socket.on('novo usuario',(msg)=>{
-            console.log(msg)
+        var mensagem = document.getElementById('messages')
+        var form = document.getElementById('form')
+        var input = document.getElementById('input')
+        form.addEventListener('submit',(e)=>{
+          e.preventDefault();
+          if(input.value){
+            socket.emit('chat message',{msg:input.value,nome:nome})
+            input.value = ''
+            alert("mensagem enviad com sucesso!")
+          }
         })
-
     </script>
   </body>
 </html>
