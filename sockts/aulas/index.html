@@ -12,7 +12,7 @@
 
       #messages { list-style-type: none; margin: 0; padding: 0; }
       #messages > li { padding: 0.5rem 1rem; }
-      #messages > li:nth-child(odd) { background: #efefef; }
+      #messages > li{background-color: #fff                                                                                     ;}
     </style>
   </head>
   <body>
@@ -34,7 +34,22 @@
           if(input.value){
             socket.emit('chat message',{msg:input.value,nome:nome})
             input.value = ''
-            alert("mensagem enviad com sucesso!")
+           }
+        })
+
+        socket.on('chat message',(obj)=>{
+          if(obj.nome == nome){
+            //coloco a mensagem com uma cor
+            var item = document.createElement('li')
+            item.style.backgroundColor = 'gray'
+            item.textContent = obj.nome+': ' + obj.msg
+            mensagem.appendChild(item)
+            window.scrollTo(0, document.body.scrollHeight)
+          }else{
+            var item = document.createElement('li')
+            item.textContent = obj.nome+': ' +obj.msg
+            mensagem.appendChild(item)
+            window.scrollTo(0, document.body.scrollHeight)
           }
         })
     </script>
