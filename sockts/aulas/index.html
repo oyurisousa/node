@@ -24,8 +24,16 @@
     <script>
         var socket = io();
         var nome  = prompt("qual o seu nome")
-        alert("bem vindo "+nome)
+        socket.emit('new user',nome)
 
+        socket.on('new user',(data)=>{
+          if(data.sucess){
+            alert("bem vindo, "+nome)
+          }else{
+            alert("já existe um usuario com este nome...")
+            window.location.href = '/'
+          }
+        })
         var mensagem = document.getElementById('messages')
         var form = document.getElementById('form')
         var input = document.getElementById('input')
