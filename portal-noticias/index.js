@@ -5,6 +5,7 @@ const path = require('path')
 const app = express()
 
 const Posts = require('./Posts') 
+var session = require('express-session')
 const { query } = require('express')
 
 mongoose.connect('mongodb+srv://root:iruysousa@cluster0.dceitcl.mongodb.net/ipsumNews?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology:true}).then(()=>{
@@ -18,6 +19,10 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: true
 }))
+
+app.use(session({secret: 'keyboard cat', cookie: {maxAge:60000}
+  }))
+
 app.engine("html",require('ejs').renderFile)
 app.set('view engine','html')
 app.use('/public', express.static(path.join(__dirname,'public')))
@@ -131,6 +136,16 @@ app.get('/:slug', async (req, res) => {
     }
   });
   
+
+app.get('/admin/login',(req,res)=>{
+    if(req.session.login == null){
+        req.session.login = 'yuri'
+        res.send('sua sessão foi criada')
+    }else{
+        res.send(req.session.login)
+    }
+    
+})
 
 app.listen(5000,()=>{
     console.log('rodando')
