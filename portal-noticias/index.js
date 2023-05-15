@@ -136,13 +136,26 @@ app.get('/:slug', async (req, res) => {
     }
   });
   
+var usuarios = [{
+    login:'yuri',
+    senha:'1234',
+}]
+
+app.post("/admin/login",(req,res)=>{
+    usuarios.map((val)=>{
+        if(val.login ==req.body.login && val.senha == req.body.senha){
+            req.session.login = 'yuri'
+            
+        }
+        res.redirect('/admin/login')
+    })
+})
 
 app.get('/admin/login',(req,res)=>{
     if(req.session.login == null){
-        req.session.login = 'yuri'
-        res.send('sua sessão foi criada')
+        res.render('admin-login')
     }else{
-        res.send(req.session.login)
+        res.render('admin-painel',{})
     }
     
 })
