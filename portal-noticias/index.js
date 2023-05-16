@@ -140,7 +140,7 @@ var usuarios = [{
     login:'yuri',
     senha:'1234',
 }]
-
+    
 app.post("/admin/login",(req,res)=>{
     usuarios.map((val)=>{
         if(val.login ==req.body.login && val.senha == req.body.senha){
@@ -149,6 +149,15 @@ app.post("/admin/login",(req,res)=>{
         }
         res.redirect('/admin/login')
     })
+})
+
+app.post('/admin/cadastro',(req,res)=>{
+    //inserir no banco de daddos
+    res.send("cadastrado com sucesso")
+})
+
+app.get('/admin/deletar/:id',(req,res)=>{
+    res.send("deletado com sucesso a noticia: "+ req.params.id)
 })
 
 app.get('/admin/login',(req,res)=>{

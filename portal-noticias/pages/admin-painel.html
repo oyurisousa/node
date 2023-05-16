@@ -5,8 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>painel</title>
+    <link rel="stylesheet" href="../public/styles/admin-painel.css">
 </head>
 <body>
-    <h1>Logadp</h1>
+    
+    <header>
+        <h2>Cadastro notícia</h2>
+    </header>
+    <form  method="post" action="/admin/cadastro">
+        <input type="text" name="titulo_noticia" placeholder="Titulo">
+        <input type="text" name="url_imagem" placeholder="Notícia...">
+        <textarea name="noticia" ></textarea> 
+        <input type="submit" name="acao" value="Cadastrar">
+    </form>
+    <section class="lista-noticias">
+        <h2>Listando Notícias</h2>
+        <div>
+            <p>Titulo Noticia: minha notícia</p>
+            <a href="/admin/deletar/10">(X)</a>
+        </div>
+    </section>
+
 </body>
 </html>
