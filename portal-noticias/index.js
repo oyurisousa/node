@@ -153,7 +153,17 @@ app.post("/admin/login",(req,res)=>{
 
 app.post('/admin/cadastro',(req,res)=>{
     //inserir no banco de daddos
-    res.send("cadastrado com sucesso")
+    console.log(req.body)
+    Posts.create({
+        titulo: req.body.titulo_noticia,
+        imagem: req.body.url_noticia,
+        categoria: 'nenhuma',
+        conteudo:req.body.noticia,
+        slug: req.body.slug,
+        author: "admin",
+        views: 0
+    })
+    res.send("cadastrado com sucesso!")
 })
 
 app.get('/admin/deletar/:id',(req,res)=>{
