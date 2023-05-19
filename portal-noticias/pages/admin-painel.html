@@ -10,13 +10,13 @@
 <body>
     
     <header>
-        <h2>Cadastro notícia</h2>
+        <h2>Cadastro de notícias</h2>
     </header>
     <form  method="post" action="/admin/cadastro">
-        <input type="text" name="titulo_noticia" placeholder="Titulo">
-        <input type="text" name="url_imagem" placeholder="Url Notícia...">
-        <input type="text" name="slug" placeholder="slug">
-        <textarea name="noticia" ></textarea> 
+        <input required type="text" name="titulo_noticia" placeholder="Titulo...">
+        <input required type="text" name="url_imagem" placeholder="URL imagem...">
+        <input required type="text" name="categoria" placeholder="Categoria...">
+        <textarea required name="noticia" placeholder="Noticia..."></textarea> 
         <input type="submit" name="acao" value="Cadastrar">
     </form>
     <section class="lista-noticias">

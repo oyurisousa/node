@@ -157,11 +157,12 @@ app.post('/admin/cadastro',(req,res)=>{
     Posts.create({
         titulo: req.body.titulo_noticia,
         imagem: req.body.url_noticia,
-        categoria: 'nenhuma',
+        categoria: req.body.categoria,
         conteudo:req.body.noticia,
-        slug: req.body.slug,
-        author: "admin",
+        slug: ((req.body.titulo_noticia).split(" ")).join("-"),
+        author: usuarios[0].login,
         views: 0
+        //a.join ('|'));
     })
     res.send("cadastrado com sucesso!")
 })
