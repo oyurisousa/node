@@ -1,12 +1,15 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const fileoupload = require('express-fileupload')
 const bodyParser = require('body-parser')
+
 const path = require('path')
 const app = express()
 
 const Posts = require('./Posts') 
 var session = require('express-session')
 const { query } = require('express')
+const fileUpload = require('express-fileupload')
 
 mongoose.connect('mongodb+srv://root:iruysousa@cluster0.dceitcl.mongodb.net/ipsumNews?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology:true}).then(()=>{
     console.log("conectado com sucesso!")
@@ -19,6 +22,10 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: true
 }))
+app.use(fileUpload({
+    useTempFiles: true,
+    tempFileDir: path.join(__dirname,'temp')
+}));
 
 app.use(session({secret: 'keyboard cat', cookie: {maxAge:60000}
   }))
@@ -153,7 +160,7 @@ app.post("/admin/login",(req,res)=>{
 
 app.post('/admin/cadastro',(req,res)=>{
     //inserir no banco de daddos
-    console.log(req.body)
+
     Posts.create({
         titulo: req.body.titulo_noticia,
         imagem: req.body.url_noticia,
