@@ -22,10 +22,13 @@
     </form>
     <section class="lista-noticias">
         <h2>Listando Notícias</h2>
-        <div>
-            <p>Titulo Noticia: minha notícia</p>
-            <a href="/admin/deletar/10">(X)</a>
-        </div>
+       
+        <% for(let x = 0;x<posts.length;x++){%>
+            <div>
+                <p>Titulo Noticia:<%= posts[x].titulo%> </p>
+                <a href="/admin/deletar/10">(X)</a>
+            </div>
+        <%}%>
     </section>
 
 </body>

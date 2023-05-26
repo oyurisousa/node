@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const fileoupload = require('express-fileupload')
 const bodyParser = require('body-parser')
+const fs = require('fs')
 
 const path = require('path')
 const app = express()
@@ -161,9 +162,19 @@ app.post("/admin/login",(req,res)=>{
 app.post('/admin/cadastro',(req,res)=>{
     //inserir no banco de daddos
 
+    let formato = req.files.arquivo.name.split('.');
+    var imagem = ""
+    
+    if(['png','jpg','jpeg'].includes(formato[formato.length -1])){
+        imagem = new Date().getTime()+formato[formato.length -1]
+        req.files.arquivo.mv(__dirname+'/public/images/'+imagem)
+    }else{
+        fs.unlinkSync(req.files.arquivo.tempFilePath)
+    }
+
     Posts.create({
         titulo: req.body.titulo_noticia,
-        imagem: req.body.url_noticia,
+        imagem: 'http://localhost:5000/public/images/'+imagem,
         categoria: req.body.categoria,
         conteudo:req.body.noticia,
         slug: ((req.body.titulo_noticia).split(" ")).join("-"),
