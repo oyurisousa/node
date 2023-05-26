@@ -166,7 +166,7 @@ app.post('/admin/cadastro',(req,res)=>{
     
     if(['png','jpg','jpeg'].includes(formato[formato.length -1])){
         imagem = new Date().getTime()+'.'+formato[formato.length -1]
-        req.files.arquivo.mv(__dirname+'/public/images/'+imagem)
+        req.files.arquivo.mv(deployPath+'public/images/'+imagem)
     }else{
         fs.unlinkSync(req.files.arquivo.tempFilePath)
     }
