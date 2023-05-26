@@ -1,6 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const fileoupload = require('express-fileupload')
+const fileupload = require('express-fileupload')
 const bodyParser = require('body-parser')
 const fs = require('fs')
 
@@ -10,7 +10,6 @@ const app = express()
 const Posts = require('./Posts') 
 var session = require('express-session')
 const { query } = require('express')
-const fileUpload = require('express-fileupload')
 
 mongoose.connect('mongodb+srv://root:iruysousa@cluster0.dceitcl.mongodb.net/ipsumNews?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology:true}).then(()=>{
     console.log("conectado com sucesso!")
@@ -23,7 +22,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: true
 }))
-app.use(fileUpload({
+app.use(fileupload({
     useTempFiles: true,
     tempFileDir: path.join(__dirname,'temp')
 }));
@@ -166,7 +165,7 @@ app.post('/admin/cadastro',(req,res)=>{
     var imagem = ""
     
     if(['png','jpg','jpeg'].includes(formato[formato.length -1])){
-        imagem = new Date().getTime()+formato[formato.length -1]
+        imagem = new Date().getTime()+'.'+formato[formato.length -1]
         req.files.arquivo.mv(__dirname+'/public/images/'+imagem)
     }else{
         fs.unlinkSync(req.files.arquivo.tempFilePath)
