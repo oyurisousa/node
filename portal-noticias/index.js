@@ -174,7 +174,7 @@ app.post('/admin/cadastro',(req,res)=>{
 
     Posts.create({
         titulo: req.body.titulo_noticia,
-        imagem: 'http://localhost:5000/public/images/'+imagem,
+        imagem: 'https://ipsumnews.vercel.app/public/images/'+imagem,
         categoria: req.body.categoria,
         conteudo:req.body.noticia,
         slug: ((req.body.titulo_noticia).split(" ")).join("-"),
@@ -182,18 +182,38 @@ app.post('/admin/cadastro',(req,res)=>{
         views: 0
         //a.join ('|'));
     })
-    res.send("cadastrado com sucesso!")
+    res.redirect('/admin/login')
 })
 
 app.get('/admin/deletar/:id',(req,res)=>{
-    res.send("deletado com sucesso a noticia: "+ req.params.id)
+    Posts.deleteOne({_id:req.params.id}).then(()=>{
+        res.redirect('/admin/login')
+    })
 })
 
 app.get('/admin/login',(req,res)=>{
     if(req.session.login == null){
         res.render('admin-login')
     }else{
-        res.render('admin-painel',{})
+        Posts.find({}).sort({'_id':-1}).then(function(posts){
+            posts = posts.map((val)=>{
+                return {
+                    id: val._id,
+                    titulo: val.titulo,
+                    tituloCurto: val.titulo.substr(0,30),
+                    conteudo : val.conteudo,
+                    descricaoCurta : val.conteudo.substr(0,100),
+                    imagem : val.imagem,
+                    slug : val.slug,
+                    categoria : val.categoria,
+                    author : val.author.toUpperCase(),
+                    views : val.views
+                    
+                }
+            })
+        
+        res.render('admin-painel',{posts:posts})
+        })
     }
     
 })

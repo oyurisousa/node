@@ -26,7 +26,7 @@
         <% for(let x = 0;x<posts.length;x++){%>
             <div>
                 <p>Titulo Noticia:<%= posts[x].titulo%> </p>
-                <a href="/admin/deletar/10">(X)</a>
+                <a href="/admin/deletar/<%= posts[x].id%>">(X)</a>
             </div>
         <%}%>
     </section>
