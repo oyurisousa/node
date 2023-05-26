@@ -173,7 +173,7 @@ app.post('/admin/cadastro',(req,res)=>{
 
     Posts.create({
         titulo: req.body.titulo_noticia,
-        imagem: 'https://ipsumnews.vercel.app/public/images/'+imagem,
+        imagem: deployPath+'public/images/'+imagem,
         categoria: req.body.categoria,
         conteudo:req.body.noticia,
         slug: ((req.body.titulo_noticia).split(" ")).join("-"),
