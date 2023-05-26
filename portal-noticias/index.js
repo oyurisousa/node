@@ -36,7 +36,7 @@ app.set('view engine','html')
 app.use('/public', express.static(path.join(__dirname,'public')))
 app.set('views',path.join(__dirname,'/pages'))
 
-
+var deployPath = 'https://ipsumnews.vercel.app/'
 app.get('/',(req,res)=>{
     
     if(req.query.busca == null){
@@ -174,7 +174,7 @@ app.post('/admin/cadastro',(req,res)=>{
 
     Posts.create({
         titulo: req.body.titulo_noticia,
-        imagem: 'public/images/'+imagem,
+        imagem: deployPath+'/public/images'+imagem,
         categoria: req.body.categoria,
         conteudo:req.body.noticia,
         slug: ((req.body.titulo_noticia).split(" ")).join("-"),
