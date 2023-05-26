@@ -35,7 +35,7 @@ app.set('view engine','html')
 app.use('/public', express.static(path.join(__dirname,'public')))
 app.set('views',path.join(__dirname,'/pages'))
 
-var deployPath = 'https://ipsumnews.vercel.app/'
+const deployPath = 'http://localhost:5000/'
 app.get('/',(req,res)=>{
     
     if(req.query.busca == null){
@@ -166,7 +166,7 @@ app.post('/admin/cadastro',(req,res)=>{
     
     if(['png','jpg','jpeg'].includes(formato[formato.length -1])){
         imagem = new Date().getTime()+'.'+formato[formato.length -1]
-        req.files.arquivo.mv(__dirname+'/public/images/'+imagem)
+        req.files.arquivo.mv(deployPath+'/public/images/'+imagem)
     }else{
         fs.unlinkSync(req.files.arquivo.tempFilePath)
     }
